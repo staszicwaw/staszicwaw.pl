@@ -7,11 +7,14 @@ import http from "http";
 import config from "./config.json";
 import { getAllFiles } from "./other/util";
 import { IRoute } from "./types/routes";
+import bodyParser from "body-parser";
 
 export const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(process.cwd(), "src", "views"));
 app.use("/static", express.static(path.join(process.cwd(), "src", "static")));
+
+app.use(bodyParser.urlencoded());
 
 async function main() {
 	for (const file of getAllFiles(`${__dirname}/routes`)) {

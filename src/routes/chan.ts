@@ -13,7 +13,10 @@ export async function handler(req: express.Request, res: express.Response) {
 
 	const posts = await prisma.post.findMany({
 		take: 10,
-		skip: (currPage - 1) * 10
+		skip: (currPage - 1) * 10,
+		orderBy: {
+			id: 'desc'
+		}
 	})
 
 	const formattedPosts: IPost[] = [];
