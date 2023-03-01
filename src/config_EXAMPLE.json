@@ -1,0 +1,6 @@
+{
+	"port": "8080",
+	"https": false,
+	"httpsCert": "/path/to/https/cert",
+	"httpsKey": "/path/to/https/key"
+}

@@ -1,0 +1,4 @@
+data/db.sqlite3
+src/config.json
+dist
+node_modules
