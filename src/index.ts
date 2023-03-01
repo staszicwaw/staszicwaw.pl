@@ -7,7 +7,6 @@ import http from "http";
 import config from "./config.json";
 import { getAllFiles } from "./other/util";
 import { IRoute } from "./types/routes";
-import { init } from "./db";
 
 export const app = express();
 app.set("view engine", "ejs");
@@ -15,10 +14,8 @@ app.set("views", path.join(process.cwd(), "src", "views"));
 app.use("/static", express.static(path.join(process.cwd(), "src", "static")));
 
 async function main() {
-	init();
-	
 	for (const file of getAllFiles(`${__dirname}/routes`)) {
-		const route: IRoute = await import(file);
+		const route: IRoute = await import(file); // very poor scalability but idc
 
 		if (!route.path || !route.method || !route.handler) {
 			console.error(`Invalid route: ${file}`);

@@ -1,10 +1,3 @@
-import { Database } from "sqlite3";
-import { createTables } from "./createTables";
+import { PrismaClient } from "@prisma/client";
 
-export let db: Database;
-
-export function init() {
-	db = new Database("./data/db.sqlite3");
-
-	createTables();
-}
+export const prisma = new PrismaClient();
