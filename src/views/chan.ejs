@@ -896,32 +896,12 @@
 					<h3><a href="/chan/<%= post.id %>"><%= post.title %></a></h3>
 				</header>
 				<div class="article-body">
-					<p><%= post.content %></p>
+					<p><%= post.content.length > 30 ? post.content.slice(0, 30) + '...' : post.content %></p>
 				</div>
 			</article>
 
 		<% } %>
 	
-		<article>
-			<div class="d-flex d-flex justify-content-between article-footer">
-				<div class="article-date">
-					<span class="fas fa-info-circle" title="przypięte"></span> 
-					27 lutego 2023
-				</div>
-				
-			</div>
-			<header class="article-header">
-				<h3><a href="/article/2446">Konkurs STEM PW</a></h3>
-			</header>
-			<div class="article-body">
-				
-					<p>Z wielką radością informujemy, że do finału konkursu STEM Politechniki Warszawskiej zakwalifikowali się uczniowie Staszica:</p><ol><li>Karol Adamski, kl. 4i,</li><li>Krzysztof Grabowski, kl. 3b,</li><li>Karol Konior, kl. 3b,</li><li>Wiktor Kotala, kl. 4i,</li><li>Stanisław Lada, kl. 1b,</li><li>Łukasz Staszewski, kl. 4i,</li><li>Piotr Stolarczyk, kl. 4i.<br></li></ol>Gratulujemy i życzymy kolejnych sukcesów!<p></p>
-				
-				
-			</div>
-		</article>
-	
-
 	<ul class="pagination">
 		
 

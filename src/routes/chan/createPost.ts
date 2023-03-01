@@ -14,12 +14,14 @@ const REQUEST_SCHEMA = z.object({
 export async function handler(req: express.Request, res: express.Response) {
 
     try {
-        const parsedPostResult = REQUEST_SCHEMA.parse(req.body);
-        const data = parsedPostResult.data;
+        const data = REQUEST_SCHEMA.parse(req.body);
 
         await prisma.post.create({
             data: {
-                ...data,
+                // to jest po to aby prisma sie odpierdolila
+                title: data.title ?? '',
+                content: data.content ?? '',
+                author: data.author ?? '',
                 date: new Date()
             }
         });
