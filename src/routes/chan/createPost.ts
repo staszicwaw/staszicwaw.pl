@@ -12,20 +12,22 @@ const REQUEST_SCHEMA = z.object({
 });
 
 export async function handler(req: express.Request, res: express.Response) {
-    const parsedPostResult = REQUEST_SCHEMA.safeParse(req.body);
 
-    if (!parsedPostResult.success) {
-        return res.status(400).send("Bad request");
+    try {
+        const parsedPostResult = REQUEST_SCHEMA.parse(req.body);
+        const data = parsedPostResult.data;
+
+        await prisma.post.create({
+            data: {
+                ...data,
+                date: new Date()
+            }
+        });
+
+        return res.status(200).send("Successfully created post");
+    } catch (err) {
+        return res.status(400).send("Invalid body")
     }
 
-    const data = parsedPostResult.data;
 
-    await prisma.post.create({
-        data: {
-            ...data,
-            date: new Date()
-        }
-    });
-
-    return res.status(200).send("Successfully created post");
 }
