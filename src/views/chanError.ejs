@@ -881,22 +881,8 @@
                 </nav>
             </div>
 
-            <article>
-                <div class="d-flex d-flex justify-content-between article-footer">
-                    <div class="article-date">
-                        <span class="fas fa-info-circle" title="przypięte"></span>
-                        <%= post.date %>
-                    </div>
-                    <div class="article-author"><%= post.author %></div>
-                </div>
-                <header class="article-header">
-                    <h3><%= post.title %></h3>
-                </header>
-                <div class="article-body">
-                    <p><%= post.content %></p>
-                </div>
-                <a href="/chan" class="mt-3">Strona główna</a>
-            </article>
+            <div class="text-danger"><%= errorMsg %></div>
+            <a href="/chan">Strona główna</a>
         </main>
 
         <div class="col-md-4 col-12">

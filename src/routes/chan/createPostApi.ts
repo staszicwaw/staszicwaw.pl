@@ -8,7 +8,7 @@ export const method = "post";
 const REQUEST_SCHEMA = z.object({
     title: z.string().min(1).max(64).trim(),
     content: z.string().max(2048).trim(),
-    author: z.string().min(1).max(32).trim().default("Anonim"),
+    author: z.string().max(32).trim().default("Anonim"),
 });
 
 export async function handler(req: express.Request, res: express.Response) {
@@ -21,14 +21,14 @@ export async function handler(req: express.Request, res: express.Response) {
                 // to jest po to aby prisma sie odpierdolila
                 title: data.title ?? '',
                 content: data.content ?? '',
-                author: data.author ?? '',
+                author: data.author != '' ? data.author : 'Anonim' ?? '',
                 date: new Date()
             }
         });
 
-        return res.status(200).send("Successfully created post");
+        return res.redirect('chan');
     } catch (err) {
-        return res.status(400).send("Invalid body")
+        return res.render("chanError", { errorMsg: 'Błąd w tworzeniu posta!' })
     }
 
 
