@@ -9,6 +9,10 @@ export const method = "get";
 export async function handler(req: express.Request, res: express.Response) {
     const id = req.params.id;
 
+    if (!parseInt(id)) {
+        return res.redirect('/chan');
+    }
+
     const post = await prisma.post.findUnique({
         where: {
             id: parseInt(id)
@@ -16,7 +20,7 @@ export async function handler(req: express.Request, res: express.Response) {
     })
 
     if (post == null) {
-        res.redirect('/chan');
+        return res.redirect('/chan');
     }
 
     const formattedPost = {
