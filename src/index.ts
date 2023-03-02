@@ -48,20 +48,18 @@ async function main() {
 		app[route.method](route.path, route.handler);
 	}
 
+	const server = http.createServer(app);
+	server.listen(config.port, () => {
+		console.log(`HTTP server running on port ${config.port}`);
+	});
 	if (config.https) {
 		const credentials = {
 			key: fs.readFileSync(config.httpsKey),
 			cert: fs.readFileSync(config.httpsCert),
 		};
-		const server = https.createServer(credentials, app);
-		server.listen(config.port, () => {
-			console.log(`HTTPS server running on port ${config.port}`);
-		});
-	}
-	else {
-		const server = http.createServer(app);
-		server.listen(config.port, () => {
-			console.log(`HTTP server running on port ${config.port}`);
+		const httpsServer = https.createServer(credentials, app);
+		httpsServer.listen(config.httpsPort, () => {
+			console.log(`HTTPS server running on port ${config.httpsPort}`);
 		});
 	}
 }
