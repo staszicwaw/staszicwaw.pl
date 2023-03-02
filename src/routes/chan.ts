@@ -8,6 +8,10 @@ export const path = "/chan";
 export const method = "get";
 
 export async function handler(req: express.Request, res: express.Response) {
+	if (req.query.page != null && (!parseInt(req.query.page as string) || parseInt(req.query.page as string) < 1)) {
+		return res.redirect('/chan');
+	}
+
 	let currPage = req.query.page ? parseInt(req.query.page as string) : 1;
 	const numPages = 1;
 
