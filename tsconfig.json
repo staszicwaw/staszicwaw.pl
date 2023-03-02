@@ -3,9 +3,10 @@
 		"module": "CommonJS",
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
-		"target": "es6",
+		"target": "es2022",
 		"noImplicitAny": true,
 		// "strict": true,
+		// nie chcemy strict ani nic?
 		"allowJs": true,
 		"moduleResolution": "node",
 		"outDir": "dist",
